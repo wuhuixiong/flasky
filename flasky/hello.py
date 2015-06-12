@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from flask.ext.bootstrap import Bootstrap
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
+Bootstrap(app)
 
 app.config['DEBUG']=True
             
@@ -19,7 +19,5 @@ def user(name):
     return render_template('user.html', name=name, comments=['a','b','c'])
 
 
-
-
 if __name__ == '__main__':
-    bootstrap.run()
+    app.run(host='0.0.0.0', port=80)
