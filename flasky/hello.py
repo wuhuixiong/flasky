@@ -1,26 +1,25 @@
 #coding=utf-8
 
-from flask import Flask
-from flask.ext.script import Manager
+from flask import Flask, render_template
+from flask.ext.bootstrap import Bootstrap
 
 app = Flask(__name__)
-app.config['host']='0.0.0.0'
-app.config['port']=80
+bootstrap = Bootstrap(app)
+
+app.config['DEBUG']=True
             
-
-manager = Manager(app)
-
 @app.route('/')
 def index( ):
-    return '<h1>Hello World!</h1>'
+    #return '<h1>Hello World!</h1>'
+    return render_template('index.html')
 
 @app.route('/user/<name>')
 def user(name):
-    return '<h1>Hello, %s!</h1>'%name
-
+    #return '<h1>Hello, %s!</h1>'%name
+    return render_template('user.html', name=name, comments=['a','b','c'])
 
 
 
 
 if __name__ == '__main__':
-    manager.run()
+    bootstrap.run()
